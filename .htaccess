@@ -1,0 +1,30 @@
+# ENABLE DIRECTORY VIEWS
+Options +Indexes
+
+# STRONG HTACCESS PROTECTION
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+ order allow,deny
+ deny from all
+</Files>
+
+# DIRECTORY CUSTOMIZATION
+<IfModule mod_autoindex.c>
+
+  # SET INDEX OPTIONS
+  IndexOptions +Charset=UTF-8 +FancyIndexing +IgnoreCase +FoldersFirst +SuppressHTMLPreamble +HTMLTable +SuppressRules +SuppressDescription +NameWidth=* +IconsAreLinks
+
+  # SPECIFY HEADER FILE
+  HeaderName /src/header.html
+
+  # SPECIFY FOOTER FILE
+  ReadmeName /src/footer.html
+
+  # IGNORE THESE FILES
+  IndexIgnore .htaccess robots.txt /src
+
+  # ICONS
+  AddIcon /src/icons/gif.svg .gif
+  AddIcon /src/icons/jpg.svg .jpg .jpeg .jpe
+  AddIcon /src/icons/png.svg .png
+
+</IfModule>
