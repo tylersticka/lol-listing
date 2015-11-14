@@ -19,4 +19,24 @@
     cell.innerHTML = newContent;
   });
 
+  // FILTERING
+
+  var input = document.getElementById('filter');
+  var rows = document.querySelectorAll('tr:not(:first-of-type)');
+  var filterEvent = function () {
+    var search = input.value.trim();
+    var row, link, linkText, show, i;
+    for (i = 0; i < rows.length; i++) {
+      row = rows[i];
+      show = true;
+      if (search.length) {
+        link = row.querySelector('td:nth-child(2) > a');
+        linkText = link.innerHTML;
+        show = linkText.indexOf(search) > -1;
+      }
+      row.style.display = show ? '' : 'none';
+    }
+  };
+  input.addEventListener('keyup', filterEvent);
+
 })(window, document, moment);
