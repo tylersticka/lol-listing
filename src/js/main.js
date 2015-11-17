@@ -72,4 +72,40 @@
 
   currentHeading.classList.add(ascending ? 'asc' : 'desc');
 
+  // IMAGE PREVIEWS
+
+  var imageLinks = document.querySelectorAll('tr:not(:first-of-type) a');
+  var imageLink;
+  var i;
+
+  var removePreviews = function (context) {
+    var imgs;
+    var img;
+    var i;
+    context = context || document;
+    imgs = context.querySelectorAll('img.preview');
+    for (i = 0; i < imgs.length; i++) {
+      img = imgs[i];
+      img.parentNode.removeChild(img);
+    }
+  };
+
+  var imageLinkEnter = function (event) {
+    removePreviews();
+    var img = document.createElement('img');
+    img.setAttribute('src', this.getAttribute('href'));
+    img.classList.add('preview');
+    this.appendChild(img);
+  };
+
+  var imageLinkLeave = function () {
+    removePreviews(this);
+  };
+
+  for (i = 0; i < imageLinks.length; i++) {
+    imageLink = imageLinks[i];
+    imageLink.addEventListener('mouseenter', imageLinkEnter);
+    imageLink.addEventListener('mouseleave', imageLinkLeave);
+  }
+
 })(window, document, moment);

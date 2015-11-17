@@ -139,3 +139,12 @@ td a {
 .footer a:hover {
   background-color: #eee;
 }
+
+.preview {
+	position: fixed;
+	top: 0.5em;
+	right: 0.5em;
+	max-width: 40%;
+	max-height: 50vh;
+	border-radius: 0.25em;
+}
