@@ -23,20 +23,37 @@
 
   var input = document.getElementById('filter');
   var rows = document.querySelectorAll('tr:not(:first-of-type)');
-  var filterEvent = function () {
-    var search = input.value.trim();
-    var row, link, linkText, show, i;
+
+  var filterRows = function (search, rows, labelSelector) {
+    var row;
+    var link;
+    var linkText;
+    var show;
+    var i;
+
+    search = search || '';
+    rows = rows || document.querySelector('tr');
+    labelSelector = labelSelector || 'a';
+
     for (i = 0; i < rows.length; i++) {
       row = rows[i];
       show = true;
+
       if (search.length) {
-        link = row.querySelector('td:nth-child(2) > a');
+        link = row.querySelector(labelSelector);
         linkText = link.innerHTML;
         show = linkText.indexOf(search) > -1;
       }
+
       row.style.display = show ? '' : 'none';
     }
   };
+
+  var filterEvent = function () {
+    filterRows(input.value.trim(), rows, 'td:nth-child(2) > a');
+  };
+
   input.addEventListener('keyup', filterEvent);
+  input.addEventListener('change', filterEvent);
 
 })(window, document, moment);
