@@ -99,9 +99,27 @@ td a {
 }
 
 #filter:focus {
-	/*background-color: #fff;*/
 	border-color: #0074D9;
 	color: #222;
+}
+
+.asc:after,
+.desc:after {
+	content: "";
+	display: inline-block;
+	margin-left: 0.375em;
+	vertical-align: middle;
+	border: 0.375em solid transparent;
+}
+
+.asc:after {
+	border-top-color: currentColor;
+	border-bottom-width: 0;
+}
+
+.desc:after {
+	border-bottom-color: currentColor;
+	border-top-width: 0;
 }
 
 .footer {

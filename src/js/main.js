@@ -56,4 +56,20 @@
   input.addEventListener('keyup', filterEvent);
   input.addEventListener('change', filterEvent);
 
+  // SORT INDICATORS
+
+  var queryString = window.location.search;
+  var ascending = (queryString.indexOf('O=D') === -1);
+  var currentHeading;
+
+  if (queryString.indexOf('C=M') > -1) {
+    currentHeading = document.querySelector('th > a[href*="?C=M"]');
+  } else if (queryString.indexOf('C=S') > -1) {
+    currentHeading = document.querySelector('th > a[href*="?C=S"]');
+  } else {
+    currentHeading = document.querySelector('th > a[href*="?C=N"]');
+  }
+
+  currentHeading.classList.add(ascending ? 'asc' : 'desc');
+
 })(window, document, moment);
